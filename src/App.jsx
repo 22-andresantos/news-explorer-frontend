@@ -1,13 +1,11 @@
 import Header from './components/Header/Header';
+import Main from './components/Main/Main';
 
 function App() {
   return (
     <div className='page'>
       <Header />
-
-      <main>
-        <h1>News Explorer</h1>
-      </main>
+      <Main />
     </div>
   );
 }

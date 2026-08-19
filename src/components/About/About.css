@@ -1,0 +1,36 @@
+.about {
+  padding: 80px 40px;
+}
+
+.about__container {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.about__image-wrapper {
+  flex: 0 0 272px;
+}
+
+.about__image {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.about__content {
+  max-width: 600px;
+}
+
+.about__title {
+  margin: 0 0 24px;
+  font-size: 40px;
+}
+
+.about__text {
+  margin: 0;
+  line-height: 1.5;
+}

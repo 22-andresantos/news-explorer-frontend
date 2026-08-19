@@ -1,0 +1,31 @@
+.search-form {
+  display: flex;
+  width: 100%;
+  max-width: 608px;
+}
+
+.search-form__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 64px;
+  padding: 0 20px;
+  border: 1px solid #d1d2d6;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+}
+
+.search-form__input:focus {
+  border-color: #000;
+}
+
+.search-form__button {
+  min-width: 120px;
+  border: 0;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.search-form__button:hover {
+  opacity: 0.8;
+}
