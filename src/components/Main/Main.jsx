@@ -1,5 +1,5 @@
 import SearchForm from '../SearchForm/SearchForm';
-import NewsCardList from '../NewsCardList/NewsCardList';
+// import NewsCardList from '../NewsCardList/NewsCardList';
 import About from '../About/About';
 import './Main.css';
 
@@ -8,7 +8,11 @@ function Main() {
     <main className='main'>
       <section className='main__hero'>
         <div className='main__container'>
-          <h1 className='main__title'>O que está acontecendo no mundo?</h1>
+          <h1 className='main__title'>
+            O que está
+            <br />
+            acontecendo no mundo?
+          </h1>
 
           <p className='main__description'>
             Encontre as últimas notícias sobre qualquer tema e salve elas em sua
@@ -19,7 +23,7 @@ function Main() {
         </div>
       </section>
 
-      <NewsCardList />
+      {/* <NewsCardList /> */}
 
       <About />
     </main>
