@@ -1,17 +1,30 @@
 import './SearchForm.css';
 
 function SearchForm() {
-  return (
-    <form className='search-form'>
-      <input
-        className='search-form__input'
-        type='text'
-        placeholder='Insira um tema'
-      />
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
 
-      <button className='search-form__button' type='submit'>
-        Procurar
-      </button>
+  return (
+    <form className='search-form' onSubmit={handleSubmit}>
+      <label className='search-form__label' htmlFor='search-input'>
+        Pesquisa
+      </label>
+
+      <div className='search-form__controls'>
+        <input
+          className='search-form__input'
+          id='search-input'
+          name='keyword'
+          type='search'
+          placeholder='Insira um tema'
+          autoComplete='off'
+        />
+
+        <button className='search-form__button' type='submit'>
+          Procurar
+        </button>
+      </div>
     </form>
   );
 }

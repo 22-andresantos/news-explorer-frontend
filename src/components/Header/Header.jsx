@@ -8,7 +8,7 @@ function Header() {
           NewsExplorer
         </a>
 
-        <nav className='header__navigation'>
+        <nav className='header__navigation' aria-label='Navegação principal'>
           <a className='header__link header__link_active' href='/'>
             Início
           </a>
