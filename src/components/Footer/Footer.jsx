@@ -1,3 +1,5 @@
+import githubIcon from '../../images/github-icon.png';
+import facebookIcon from '../../images/facebook-icon.png';
 import './Footer.css';
 
 function Footer() {
@@ -27,12 +29,17 @@ function Footer() {
           <div className='footer__social'>
             <a
               className='footer__social-link'
-              href='https://github.com/'
+              href='https://github.com/22-andresantos/'
               target='_blank'
               rel='noreferrer'
               aria-label='GitHub'
             >
-              GitHub
+              <img
+                className='footer__social-icon'
+                src={githubIcon}
+                alt='GitHub'
+                aria-hidden='true'
+              />
             </a>
 
             <a
@@ -42,7 +49,12 @@ function Footer() {
               rel='noreferrer'
               aria-label='Facebook'
             >
-              Facebook
+              <img
+                className='footer__social-icon'
+                src={facebookIcon}
+                alt='Facebook'
+                aria-hidden='true'
+              />
             </a>
           </div>
         </div>

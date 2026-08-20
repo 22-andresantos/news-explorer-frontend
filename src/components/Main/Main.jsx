@@ -1,9 +1,31 @@
+import { useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
-// import NewsCardList from '../NewsCardList/NewsCardList';
+import NewsCardList from '../NewsCardList/NewsCardList';
 import About from '../About/About';
+import NothingFound from '../NothingFound/NothingFound';
+import Preloader from '../Preloader/Preloader';
 import './Main.css';
 
 function Main() {
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [error, setError] = useState('');
+
+  function handleSearch(keyword) {
+    console.log('Pesquisa:', keyword);
+
+    setIsLoading(true);
+    setHasSearched(true);
+    setError('');
+
+    // Temporário.
+    // Aqui entraremos com a chamada para a API na próxima etapa.
+    setArticles([]);
+
+    setIsLoading(false);
+  }
+
   return (
     <main className='main'>
       <section className='main__hero'>
@@ -19,11 +41,23 @@ function Main() {
             conta pessoal
           </p>
 
-          <SearchForm />
+          <SearchForm onSearch={handleSearch} />
         </div>
       </section>
 
-      {/* <NewsCardList /> */}
+      {isLoading && <Preloader />}
+
+      {!isLoading && hasSearched && articles.length === 0 && !error && (
+        <NothingFound />
+      )}
+
+      {!isLoading && articles.length > 0 && <NewsCardList />}
+
+      {error && (
+        <section className='main__status'>
+          <p>Ocorreu um erro durante a pesquisa.</p>
+        </section>
+      )}
 
       <About />
     </main>

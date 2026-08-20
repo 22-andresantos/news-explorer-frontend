@@ -1,8 +1,23 @@
+import { useState } from 'react';
 import './SearchForm.css';
 
-function SearchForm() {
+function SearchForm({ onSearch }) {
+  const [keyword, setKeyword] = useState('');
+
+  function handleChange(event) {
+    setKeyword(event.target.value);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
+
+    const trimmedKeyword = keyword.trim();
+
+    if (!trimmedKeyword) {
+      return;
+    }
+
+    onSearch(trimmedKeyword);
   }
 
   return (
@@ -19,6 +34,8 @@ function SearchForm() {
           type='search'
           placeholder='Insira um tema'
           autoComplete='off'
+          value={keyword}
+          onChange={handleChange}
         />
 
         <button className='search-form__button' type='submit'>
