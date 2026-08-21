@@ -1,3 +1,4 @@
+import { getNews } from '../../utils/NewsApi';
 import { useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import NewsCardList from '../NewsCardList/NewsCardList';
@@ -11,19 +12,30 @@ function Main() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [error, setError] = useState('');
+  const [searchId, setSearchId] = useState(0);
 
   function handleSearch(keyword) {
-    console.log('Pesquisa:', keyword);
-
+    setSearchId((currentId) => currentId + 1);
     setIsLoading(true);
     setHasSearched(true);
     setError('');
 
-    // Temporário.
-    // Aqui entraremos com a chamada para a API na próxima etapa.
-    setArticles([]);
+    getNews(keyword)
+      .then((data) => {
+        setArticles(data.articles || []);
+      })
+      .catch((err) => {
+        console.error(err);
 
-    setIsLoading(false);
+        setArticles([]);
+
+        setError(
+          'Desculpe, algo deu errado durante a solicitação. Pode haver um problema de conexão ou o servidor pode estar inativo. Por favor, tente novamente mais tarde.',
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   return (
@@ -51,14 +63,15 @@ function Main() {
         <NothingFound />
       )}
 
-      {!isLoading && articles.length > 0 && <NewsCardList />}
-
-      {error && (
-        <section className='main__status'>
-          <p>Ocorreu um erro durante a pesquisa.</p>
-        </section>
+      {!isLoading && articles.length > 0 && (
+        <NewsCardList key={searchId} articles={articles} />
       )}
 
+      {!isLoading && error && (
+        <section className='main__status'>
+          <p>{error}</p>
+        </section>
+      )}
       <About />
     </main>
   );
