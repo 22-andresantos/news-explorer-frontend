@@ -35,3 +35,127 @@
   font-size: 14px;
   text-transform: uppercase;
 }
+
+.news-card__keyword {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  padding: 11px 22px;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #1a1b22;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.news-card__delete-container {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.news-card__delete-button {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.news-card__delete-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.news-card__delete-tooltip {
+  display: none;
+  padding: 11px 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #000;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.news-card__delete-container:hover .news-card__delete-tooltip {
+  display: block;
+}
+
+.news-card__image-wrapper {
+  position: relative;
+}
+
+.news-card__save-container {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.news-card__save-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.news-card__save-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+}
+
+.news-card__save-icon_hover {
+  opacity: 0;
+}
+
+.news-card__save-button:hover .news-card__save-icon_default {
+  opacity: 0;
+}
+
+.news-card__save-button:hover .news-card__save-icon_hover {
+  opacity: 1;
+}
+
+.news-card__save-button_saved:hover .news-card__save-icon_default {
+  opacity: 1;
+}
+
+.news-card__tooltip {
+  display: none;
+  padding: 11px 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #000;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.news-card__save-container:hover .news-card__tooltip {
+  display: block;
+}

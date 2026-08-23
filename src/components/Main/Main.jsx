@@ -1,3 +1,7 @@
+import {
+  LOCAL_STORAGE_ARTICLES_KEY,
+  LOCAL_STORAGE_KEYWORD_KEY,
+} from '../../utils/constants';
 import { getNews } from '../../utils/NewsApi';
 import { useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
@@ -7,22 +11,53 @@ import NothingFound from '../NothingFound/NothingFound';
 import Preloader from '../Preloader/Preloader';
 import './Main.css';
 
-function Main() {
-  const [articles, setArticles] = useState([]);
+function Main({ savedArticles, setSavedArticles, isLoggedIn }) {
+  const [articles, setArticles] = useState(() => {
+    const storedArticles = localStorage.getItem(LOCAL_STORAGE_ARTICLES_KEY);
+
+    if (!storedArticles) {
+      return [];
+    }
+
+    try {
+      return JSON.parse(storedArticles);
+    } catch {
+      return [];
+    }
+  });
+
+  const [currentKeyword, setCurrentKeyword] = useState(() => {
+    return localStorage.getItem(LOCAL_STORAGE_KEYWORD_KEY) || '';
+  });
   const [isLoading, setIsLoading] = useState(false);
-  const [hasSearched, setHasSearched] = useState(false);
+
+  const [hasSearched, setHasSearched] = useState(() => {
+    return Boolean(localStorage.getItem(LOCAL_STORAGE_ARTICLES_KEY));
+  });
+
   const [error, setError] = useState('');
   const [searchId, setSearchId] = useState(0);
 
   function handleSearch(keyword) {
     setSearchId((currentId) => currentId + 1);
+    setCurrentKeyword(keyword);
+
     setIsLoading(true);
     setHasSearched(true);
     setError('');
 
     getNews(keyword)
       .then((data) => {
-        setArticles(data.articles || []);
+        const receivedArticles = data.articles || [];
+
+        setArticles(receivedArticles);
+
+        localStorage.setItem(
+          LOCAL_STORAGE_ARTICLES_KEY,
+          JSON.stringify(receivedArticles),
+        );
+
+        localStorage.setItem(LOCAL_STORAGE_KEYWORD_KEY, keyword);
       })
       .catch((err) => {
         console.error(err);
@@ -53,7 +88,7 @@ function Main() {
             conta pessoal
           </p>
 
-          <SearchForm onSearch={handleSearch} />
+          <SearchForm onSearch={handleSearch} initialKeyword={currentKeyword} />
         </div>
       </section>
 
@@ -63,8 +98,16 @@ function Main() {
         <NothingFound />
       )}
 
+      {/* renderizando os cards */}
       {!isLoading && articles.length > 0 && (
-        <NewsCardList key={searchId} articles={articles} />
+        <NewsCardList
+          key={searchId}
+          articles={articles}
+          savedArticles={savedArticles}
+          setSavedArticles={setSavedArticles}
+          isLoggedIn={isLoggedIn}
+          keyword={currentKeyword}
+        />
       )}
 
       {!isLoading && error && (

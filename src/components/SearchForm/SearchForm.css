@@ -21,6 +21,15 @@
   height: 64px;
 }
 
+.search-form__error {
+  display: block;
+  margin-top: 8px;
+  color: #ff0000;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+}
+
 .search-form__input {
   width: 100%;
   height: 64px;

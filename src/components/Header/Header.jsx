@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import './Header.css';
 
-function Header() {
+function Header({ onLoginClick, onLogout, isLoggedIn = false, userName = '' }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isSavedNewsPage = location.pathname === '/saved-news';
 
   function handleMenuToggle() {
     setIsMenuOpen(!isMenuOpen);
@@ -13,11 +17,15 @@ function Header() {
   }
 
   return (
-    <header className={`header ${isMenuOpen ? 'header_menu-open' : ''}`}>
+    <header
+      className={`header ${
+        isSavedNewsPage ? 'header_theme_light' : 'header_theme_dark'
+      } ${isMenuOpen ? 'header_menu-open' : ''}`}
+    >
       <div className='header__container'>
-        <a className='header__logo' href='/' onClick={handleMenuClose}>
+        <NavLink className='header__logo' to='/' onClick={handleMenuClose}>
           NewsExplorer
-        </a>
+        </NavLink>
 
         <button
           className='header__menu-button'
@@ -36,17 +44,42 @@ function Header() {
           }`}
           aria-label='Navegação principal'
         >
-          <a
-            className='header__link header__link_active'
-            href='/'
+          <NavLink
+            className={({ isActive }) =>
+              `header__link ${isActive ? 'header__link_active' : ''}`
+            }
+            to='/'
+            end
             onClick={handleMenuClose}
           >
             Início
-          </a>
+          </NavLink>
 
-          <button className='header__button' type='button'>
-            Entrar
-          </button>
+          {isLoggedIn && (
+            <NavLink
+              className={({ isActive }) =>
+                `header__link ${isActive ? 'header__link_active' : ''}`
+              }
+              to='/saved-news'
+              onClick={handleMenuClose}
+            >
+              Artigos salvos
+            </NavLink>
+          )}
+
+          {!isLoggedIn ? (
+            <button
+              className='header__button'
+              type='button'
+              onClick={onLoginClick}
+            >
+              Entrar
+            </button>
+          ) : (
+            <button className='header__button' type='button' onClick={onLogout}>
+              {userName || 'Usuário'}
+            </button>
+          )}
         </nav>
       </div>
     </header>

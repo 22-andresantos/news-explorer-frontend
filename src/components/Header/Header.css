@@ -1,12 +1,22 @@
 .header {
-  position: absolute;
   top: 0;
   left: 0;
   z-index: 10;
   width: 100%;
+}
+
+.header_theme_dark {
+  position: absolute;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   background-color: transparent;
   color: #fff;
+}
+
+.header_theme_light {
+  position: relative;
+  border-bottom: 1px solid #d1d2d6;
+  background-color: #fff;
+  color: #1a1b22;
 }
 
 .header__container {
@@ -20,7 +30,7 @@
 }
 
 .header__logo {
-  color: #fff;
+  color: currentColor;
   font-family: 'Roboto Slab', serif;
   font-size: 20px;
   font-weight: 700;
@@ -44,7 +54,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  color: #fff;
+  color: currentColor;
   font-family: 'Roboto', Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
@@ -63,7 +73,7 @@
   bottom: 0;
   left: 0;
   height: 3px;
-  background-color: #fff;
+  background-color: currentColor;
   content: '';
 }
 
@@ -75,7 +85,7 @@
   border: 1px solid #fff;
   border-radius: 100px;
   background: transparent;
-  color: #fff;
+  color: currentColor;
   font-family: 'Roboto', Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
@@ -125,6 +135,18 @@
 @media screen and (max-width: 600px) {
   .header {
     transition: background-color 0.2s ease;
+  }
+
+  .header_theme_light.header_menu-open {
+    background-color: #fff;
+  }
+
+  .header_theme_light .header__menu-line {
+    background-color: #1a1b22;
+  }
+
+  .header_theme_light .header__navigation {
+    background-color: #fff;
   }
 
   .header_menu-open {

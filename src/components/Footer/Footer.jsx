@@ -1,5 +1,6 @@
-import githubIcon from '../../images/github-icon.png';
-import facebookIcon from '../../images/facebook-icon.png';
+import { Link } from 'react-router-dom';
+import githubIcon from '../../images/github-icon.svg';
+import facebookIcon from '../../images/facebook-icon.svg';
 import './Footer.css';
 
 function Footer() {
@@ -12,9 +13,9 @@ function Footer() {
 
         <div className='footer__content'>
           <nav className='footer__navigation' aria-label='Navegação do rodapé'>
-            <a className='footer__link' href='/'>
+            <Link className='footer__link' to='/'>
               Início
-            </a>
+            </Link>
 
             <a
               className='footer__link'

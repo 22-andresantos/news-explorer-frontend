@@ -1,4 +1,4 @@
-import notFoundIcon from '../../images/not-found_v1.png';
+import notFoundIcon from '../../images/not-found-icon.svg';
 import './NothingFound.css';
 
 function NothingFound() {

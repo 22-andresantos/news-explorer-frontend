@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import './SearchForm.css';
 
-function SearchForm({ onSearch }) {
-  const [keyword, setKeyword] = useState('');
+function SearchForm({ onSearch, initialKeyword = '' }) {
+  const [keyword, setKeyword] = useState(initialKeyword);
+
+  const [error, setError] = useState('');
 
   function handleChange(event) {
     setKeyword(event.target.value);
+
+    if (error) {
+      setError('');
+    }
   }
 
   function handleSubmit(event) {
@@ -14,9 +20,11 @@ function SearchForm({ onSearch }) {
     const trimmedKeyword = keyword.trim();
 
     if (!trimmedKeyword) {
+      setError('Por favor, insira uma palavra-chave');
       return;
     }
 
+    setError('');
     onSearch(trimmedKeyword);
   }
 
@@ -37,6 +45,8 @@ function SearchForm({ onSearch }) {
           value={keyword}
           onChange={handleChange}
         />
+
+        {error && <span className='search-form__error'>{error}</span>}
 
         <button className='search-form__button' type='submit'>
           Procurar
