@@ -1,16 +1,46 @@
-# React + Vite
+# News Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+News Explorer é uma aplicação web desenvolvida em React que permite pesquisar notícias recentes sobre diferentes temas, visualizar os resultados e salvar artigos para consulta posterior.
 
-Currently, two official plugins are available:
+O projeto foi desenvolvido como Projeto Final do curso de Desenvolvimento Web da TripleTen.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funcionalidades
 
-## React Compiler
+- Pesquisa de notícias por palavra-chave.
+- Integração com a News API.
+- Exibição de três artigos inicialmente.
+- Botão "Mostrar mais" para carregar mais resultados.
+- Estado de carregamento com preloader.
+- Estado "Nada encontrado".
+- Tratamento de erros da API.
+- Armazenamento da última pesquisa no localStorage.
+- Formulários de login e cadastro.
+- Validação de campos de formulário.
+- Página de artigos salvos.
+- Salvamento e remoção de artigos no estado da aplicação.
+- Layout responsivo para desktop, tablet e dispositivos móveis.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologias utilizadas
 
-## Expanding the ESLint configuration
+- HTML5
+- CSS3
+- JavaScript
+- React
+- React Router
+- Vite
+- News API
+- Local Storage
+- ESLint
+- Git e GitHub
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## API de notícias
+
+O projeto utiliza a News API para realizar pesquisas de notícias.
+
+Durante o desenvolvimento, as solicitações podem ser realizadas através da News API.
+
+Para publicação, o projeto utiliza o servidor proxy disponibilizado pela TripleTen:
+
+```text
+https://nomoreparties.co/news/v2
+```
