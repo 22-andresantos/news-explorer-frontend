@@ -43,6 +43,8 @@ export function getNews(keyword) {
     apiKey,
     from,
     to,
+    language: 'pt',
+    sortBy: 'publishedAt',
     pageSize: String(NEWS_API_PAGE_SIZE),
   });
 
