@@ -29,7 +29,7 @@ function checkResponse(res) {
 }
 
 export function getNews(keyword) {
-  const apiKey = import.meta.env.VITE_NEWS_API_KEY;
+  const apiKey = import.meta.env.VITE_NEWS_API_KEY?.trim();
   const { from, to } = getDateRange();
 
   if (!apiKey) {
